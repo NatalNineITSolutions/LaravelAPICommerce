@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ForgotPasswordController extends Controller
 {
@@ -42,7 +43,7 @@ class ForgotPasswordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    public function sendResetLinkEmail(Request $request)
+    /*public function sendResetLinkEmail(Request $request)
     {
         $request->validate([
             'email' => 'required|email|exists:users',
@@ -55,7 +56,31 @@ class ForgotPasswordController extends Controller
         } catch (Exception $e) {
             return back()->with('error', __(SOMETHING_WENT_WRONG));
         }
+    }*/
+    
+
+public function sendResetLinkEmail(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email|exists:users',
+    ]);
+
+    try {
+        $settingsService = new SettingsService();
+        $settingsService->sendForgotMail($request->email);
+
+        // Log success message
+        Log::info('Password reset link email sent successfully to: ' . $request->email);
+
+        return back()->with('success', __('We have mailed your password reset link!'));
+    } catch (Exception $e) {
+        // Log error message
+        Log::error('Error sending password reset link email to: ' . $request->email . ' Error: ' . $e->getMessage());
+
+        return back()->with('error', __('Something went wrong'));
     }
+}
+
 
     public function forgetVerifyForm($token, $email)
     {

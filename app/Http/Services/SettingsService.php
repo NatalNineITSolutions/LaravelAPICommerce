@@ -197,7 +197,7 @@ class SettingsService
         }
     }
 
-    public function sendForgotMail($email)
+  /*  public function sendForgotMail($email)
     {
         $token = Str::random(64);
         DB::table('password_resets')->insert([
@@ -218,7 +218,36 @@ class SettingsService
                 $this->sendCustomizeMail($email, $template->subject, $adminUser->id, $emailTemplateContent);
             }
         }
+    } */
+
+
+public function sendForgotMail($email)
+{
+    $token = Str::random(64);
+    DB::table('password_resets')->insert([
+        'email' => $email,
+        'token' => $token,
+        'created_at' => now()
+    ]);
+
+    Log::info('Password reset token generated for email: ' . $email . ' Token: ' . $token);
+
+    $template = EmailTemplate::where('category', EMAIL_TEMPLATE_FORGOT_PASSWORD)->first();
+    if ($template) {
+        $customizedFieldsArray = [
+            'app_name' => getOption('app_name'),
+            'app_email' => getOption('app_email'),
+            'link' => '<a href="' . route('password.reset.verify', $token) . '">' . __('Link') . '</a>',
+        ];
+        $adminUser = User::where('role', USER_ROLE_ADMIN)->first();
+        $emailTemplateContent = replaceBrackets($template->body, $customizedFieldsArray);
+        if ($emailTemplateContent) {
+            Log::info('Sending password reset email to: ' . $email);
+            $this->sendCustomizeMail($email, $template->subject, $adminUser->id, $emailTemplateContent);
+        }
     }
+}
+
 
     public static function sendCustomizeMail($email, $subject, $user_id, $content)
     {
