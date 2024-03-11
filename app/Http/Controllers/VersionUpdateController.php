@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+/*namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
@@ -292,4 +292,4 @@ class VersionUpdateController extends Controller
     {
         return ['App build version' => config('app.build_version'), 'Customer current build version' => getCustomerCurrentBuildVersion()];
     }
-}
+}*/

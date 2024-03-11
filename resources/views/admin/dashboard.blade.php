@@ -92,7 +92,7 @@
                     </div>
                 </div>
 
-                <div class="col-md col-sm-12">
+             <!--   <div class="col-md col-sm-12">
                     <div class="h-100 zNews-item-one">
                         <div class="content">
                             <div class="d-flex items-center justify-content-between w-full">
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
 
 
@@ -141,14 +141,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                   <!-- <div class="col-md-6">
                         <div class="zNews-item-one">
                             <div class="content">
                                 <h4 class="title mb-3">{{ __('Product Sold Out') }}</h4>
                                 <div id="activityChart"></div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>

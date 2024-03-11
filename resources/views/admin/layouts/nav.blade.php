@@ -12,7 +12,7 @@
     <!-- Right -->
     <div class="right d-flex justify-content-end align-items-center cg-15">
         <!--language-->
-        @if (!empty(getOption('show_language_switcher')) && getOption('show_language_switcher') == STATUS_ACTIVE)
+       <!-- @if (!empty(getOption('show_language_switcher')) && getOption('show_language_switcher') == STATUS_ACTIVE)
             <div class="dropdown headerUserDropdown lanDropdown">
                 <button class="dropdown-toggle p-0 border-0 bg-transparent d-flex align-items-center cg-8" type="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,13 +37,13 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
+        @endif-->
         <!-- Message - Notify - User -->
         <div class="d-flex align-items-center cg-17">
             <div class="d-flex align-items-center cg-5">
-                <!-- Message -->
+                <!--Message--> 
 
-                <!-- Notify -->
+               <!--  //Notify 
                 <div class="dropdown notifyDropdown">
                     <button class="item-one dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -96,9 +96,9 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
+                </div>-->
             </div>
-            <!-- User -->
+            <!--User -->
             <div class="dropdown headerUserDropdown">
                 <button class="dropdown-toggle p-0 border-0 bg-transparent d-flex align-items-center cg-8"
                     type="button" data-bs-toggle="dropdown" aria-expanded="false">

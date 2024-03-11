@@ -286,7 +286,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                               <!-- <tr>
                                                     <td>
                                                         <h6>{{ __('Google Analytics') }}</h6>
                                                         <small
@@ -356,7 +356,7 @@
                                                             </button>
                                                         </div>
                                                     </td>
-                                                </tr>
+                                                </tr>-->
                                                 <tr class="d-none">
                                                     <td>
                                                         <h6>{{ __('Google 2fa') }}</h6>
@@ -417,7 +417,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                               <!-- <tr>
                                                     <td>
                                                         <h6>{{ __('Preloader') }}</h6>
                                                         <small
@@ -445,7 +445,7 @@
                                                             </button>
                                                         </div>
                                                     </td>
-                                                </tr>
+                                                </tr>-->
                                                 <tr class="d-none">
                                                     <td>
                                                         <h6>{{ __('Disable Registration') }}</h6>
@@ -506,7 +506,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td>
                                                         <h6>{{ __('Show Language Switcher') }}</h6>
                                                         <small
@@ -565,7 +565,7 @@
                                                             </button>
                                                         </div>
                                                     </td>
-                                                </tr>
+                                                </tr>-->
                                             </tbody>
                                         </table>
                                     </div>

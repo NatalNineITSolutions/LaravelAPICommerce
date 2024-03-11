@@ -207,7 +207,7 @@
                     <span class="">{{ __('App Configuration') }}</span>
                 </a>
             </li>
-            <li>
+            <!--<li>
                 <a href="{{ route('admin.setting.currencies.index') }}"
                     class="d-flex align-items-center cg-10 {{ $activeCurrenciesSetting ?? '' }}">
                     <div class="d-flex {{ isset($activeCurrenciesSetting) ? 'active' : 'collapsed' }}">
@@ -228,7 +228,7 @@
                     </div>
                     <span class="">{{ __('Currency Settings') }}</span>
                 </a>
-            </li>
+            </li>-->
             <li>
                 <a href="{{ route('admin.setting.gateway.index') }}"
                     class="d-flex align-items-center cg-10 {{ $activeGatewaySetting ?? '' }}">
@@ -250,7 +250,7 @@
                     <span class="">{{ __('Payment Getaway') }}</span>
                 </a>
             </li>
-            <li>
+           <!--<li>
                 <a href="{{ route('admin.setting.languages.index') }}"
                     class="d-flex align-items-center cg-10 {{ $activeLanguagesSetting ?? '' }}">
                     <div class="d-flex {{ isset($activeLanguagesSetting) ? 'active' : 'collapsed' }}">
@@ -289,7 +289,7 @@
                     </div>
                     <span class="">{{ __('Multi Language') }}</span>
                 </a>
-            </li>
+            </li>-->
             <li>
                 <a href="{{ route('admin.setting.email-template') }}"
                     class="d-flex align-items-center cg-10 {{ $activeEmailSetting ?? '' }}">
@@ -310,7 +310,7 @@
                     <span class="">{{ __('Email Template') }}</span>
                 </a>
             </li>
-            <li>
+           <!--<li>
                 <a href="{{ route('admin.file-version-update') }}"
                     class="{{ $activeVersionUpdate ?? '' }} d-flex align-items-center cg-10">
                     <div class="d-flex {{ $activeVersionUpdate ?? '' }}">
@@ -337,7 +337,7 @@
                     </div>
                     <span class="">{{ __('Version Update') }}</span>
                 </a>
-            </li>
+            </li>-->
         </ul>
         <a href="{{ route('logout') }}"
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

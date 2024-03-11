@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+/*namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CurrencyRequest;
@@ -20,7 +20,7 @@ class CurrencyController extends Controller
         $this->currencyService = new CurrencyService;
     }
 
-    public function index(Request $request)
+   /*public function index(Request $request)
     {
         if ($request->ajax()) {
             return $this->currencyService->getAllData();
@@ -53,4 +53,4 @@ class CurrencyController extends Controller
     {
         return $this->currencyService->deleteById($id);
     }
-}
+}*/

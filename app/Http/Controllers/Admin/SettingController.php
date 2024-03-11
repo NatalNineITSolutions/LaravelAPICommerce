@@ -36,13 +36,13 @@ class SettingController extends Controller
         return view('admin.setting.general_settings.application-settings')->with($data);
     }
 
-    public function affiliateSetting()
+    /*public function affiliateSetting()
     {
         $data['pageTitle'] = __('Affiliate Setting');
         $data['activeApplicationSetting'] = 'active';
         $data['affiliateSettingsActiveClass'] = 'active-color-one';
         return view('admin.setting.general_settings.affiliate-settings', $data);
-    }
+    }*/
 
     public function configurationSetting()
     {
@@ -182,7 +182,7 @@ class SettingController extends Controller
         }
     }
 
-    public function storageSetting()
+    /*public function storageSetting()
     {
         $data['title'] = __("Storage Setting");
         $data['showManageApplicationSetting'] = 'show';
@@ -190,7 +190,7 @@ class SettingController extends Controller
         $data['subStorageSettingActiveClass'] = 'active-color-one';
         $data['timezones'] = getTimeZone();
         return view('admin.setting.general_settings.storage-setting')->with($data);
-    }
+    }*/
 
     public function storageSettingsUpdate(Request $request)
     {
@@ -286,14 +286,14 @@ class SettingController extends Controller
         }
     }
 
-    public function maintenanceMode()
+   /* public function maintenanceMode()
     {
         $data['title'] = __("Maintenance Mode Settings");
         $data['showManageApplicationSetting'] = 'show';
         $data['activeApplicationSetting'] = 'active';
         $data['subMaintenanceModeActiveClass'] = 'active-color-one';
         return view('admin.setting.general_settings.maintenance-mode', $data);
-    }
+    }*/
 
     public function maintenanceModeChange(Request $request)
     {
@@ -387,7 +387,7 @@ class SettingController extends Controller
         return view('admin.setting.be-a-contributor')->with($data);
     }
 
-    public function cacheSettings()
+   /* public function cacheSettings()
     {
         $data['title'] = __('Cache Settings');
         $data['showManageApplicationSetting'] = 'show';
@@ -424,7 +424,7 @@ class SettingController extends Controller
             }
         }
         return redirect()->back();
-    }
+    }*/
 
     public function storageLink()
     {

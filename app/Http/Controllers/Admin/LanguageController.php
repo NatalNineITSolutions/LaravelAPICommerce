@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+/*namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\LanguageRequest;
@@ -143,4 +143,4 @@ class LanguageController extends Controller
             return $this->error([], $message);
         }
     }
-}
+}*/

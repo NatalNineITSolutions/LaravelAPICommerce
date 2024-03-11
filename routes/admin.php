@@ -40,7 +40,7 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::post('application-env-update', [SettingController::class, 'saveSetting'])->name('settings_env.update');
     Route::get('color-settings', [SettingController::class, 'colorSettings'])->name('color-settings');
 
-    Route::group(['prefix' => 'currency', 'as' => 'currencies.'], function () {
+   Route::group(['prefix' => 'currency', 'as' => 'currencies.'], function () {
         Route::get('', [CurrencyController::class, 'index'])->name('index');
         Route::post('currency', [CurrencyController::class, 'store'])->name('store');
         Route::get('edit/{id}', [CurrencyController::class, 'edit'])->name('edit');
