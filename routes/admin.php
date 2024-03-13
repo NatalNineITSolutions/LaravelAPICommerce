@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\NotificationController;
 use App\Http\Controllers\VersionUpdateController;
 use App\Http\Controllers\Admin\EmailTemplateController;
+use App\Http\Controllers\Admin\PackageTemplateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -111,6 +112,11 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     //common setting update
     Route::post('common-settings-update', [SettingController::class, 'commonSettingUpdate'])->name('common.settings.update')->middleware('isDemo');
 
+    //Packages
+    Route::get('package-template', [PackageTemplateController::class, 'packageTemplate'])->name('package-template');
+    Route::get('add-package', [PackageTemplateController::class, 'addPackage'])->name('add-package');
+
+    
     Route::get('email-template', [EmailTemplateController::class, 'emailTemplate'])->name('email-template');
     Route::get('email-template-config', [EmailTemplateController::class, 'emailTemplateConfig'])->name('email.template.config');
     Route::post('email-template-config-update', [EmailTemplateController::class, 'emailTemplateConfigUpdate'])->name('email.template.config.update');

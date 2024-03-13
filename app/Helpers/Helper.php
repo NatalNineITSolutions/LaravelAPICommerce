@@ -42,6 +42,26 @@ if (!function_exists("getOption")) {
     }
 }
 
+/*if (!function_exists("getPackage")) {
+    function getPackage($conditionField, $conditionValue, $retrieveField , $default = NULL)
+    {
+        // Assuming you have a Package model corresponding to the packages table
+        $package = \App\Models\Package::where($conditionField, $conditionValue)->first();
+
+        if ($package) {
+            return $package->$retrieveField; // Return the value of the specified field
+        } else {
+            return $default;
+        }
+    }
+}*/
+
+function getPackage()
+{
+ // Fetch all packages from the database
+ return Package::all();
+}
+
 function getSettingImage($option_key)
 {
 

@@ -68,7 +68,28 @@
             }
         });
     }
-
+    
+    window.configurepackage = function(selector){
+        console.log("Configuring package for:", selector); // Added console log
+     $.ajax({
+        type: 'GET',
+        url: $('#addpackage').val()+'?key='+selector,
+        success: function (data) {
+            $(document).find('#packageModal').find('.modal-content').html(data);
+            $('#packageModal').modal('toggle');
+            if ($(document).find('#packageModal').find('.sf-select-edit-modal').length) {
+                $(document).find('#packageModal').find('.sf-select-edit-modal').select2({
+                    dropdownCssClass: "sf-select-dropdown",
+                    selectionCssClass: "sf-select-section",
+                    dropdownParent: $('#packageModal'),
+                });
+            }
+        },
+        error: function (error) {
+            toastr.error(error.responseJSON.message)
+        }
+    });
+    }
 
 })(jQuery)
 
