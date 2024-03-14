@@ -3,10 +3,8 @@
         <h2>{{ __('Add Package') }}</h2>
     </div>
 
-    <form class="ajax" action="{{ route('admin.setting.edit-package', ['id' => $package->id]) }}" method="POST"
-
+    <form class="ajax" action="{{ route('admin.setting.addnew-package') }}" method="POST"
         enctype="multipart/form-data" data-handler="commonResponseForModal">
-        @method('PATCH')
         @csrf
         <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
@@ -14,7 +12,7 @@
                     <div class="primary-form-group mt-2">
                         <div class="primary-form-group-wrap">
                             <label class="form-label">{{ __('Name') }} <span class="text-danger">*</span></label>
-                            <input type="text" name="name" value="{{ $package->name }}"
+                            <input type="text" name="name" value=""
                                 class="primary-form-control">
                         </div>
                     </div>
@@ -26,7 +24,7 @@
                         <div class="primary-form-group-wrap">
                             <label class="form-label">{{ __('Customer Limit') }} <span
                                     class="text-danger">*</span></label>
-                            <input type="number" name="customer_limit" value="{{ $package->customer_limit }}"
+                            <input type="number" name="customer_limit" value=""
                                 class="primary-form-control">
                         </div>
                     </div>
@@ -38,7 +36,7 @@
                         <div class="primary-form-group-wrap">
                             <label class="form-label">{{ __('Product Limit') }} <span
                                     class="text-danger">*</span></label>
-                            <input type="number" name="product_limit" value="{{ $package->product_limit }}"
+                            <input type="number" name="product_limit" value=""
                                 class="primary-form-control">
                         </div>
                     </div>
@@ -50,7 +48,7 @@
                         <div class="primary-form-group-wrap">
                             <label class="form-label">{{ __('Subscription Limit') }} <span
                                     class="text-danger">*</span></label>
-                            <input type="number" name="subscription_limit" value="{{ $package->subscription_limit }}"
+                            <input type="number" name="subscription_limit" value=""
                                 class="primary-form-control">
                         </div>
                     </div>
@@ -71,7 +69,7 @@
                     <div class="primary-form-group-wrap">
                     <label class="form-label">{{ __('Monthly Price') }} <span
                                     class="text-danger">*</span></label>
-                            <input type="number" name="monthly_price" value="{{ $package->monthly_price }}"
+                            <input type="number" name="monthly_price" value=""
                                 class="primary-form-control">
                     </div>
                 </div>
@@ -82,7 +80,7 @@
                         <div class="primary-form-group-wrap">
                         <label class="form-label">{{ __('Yearly Price') }} <span
                                     class="text-danger">*</span></label>
-                            <input type="number" name="yearly_price" value="{{ $package->yearly_price }}"
+                            <input type="number" name="yearly_price" value=""
                                 class="primary-form-control">
                         </div>
                     </div>

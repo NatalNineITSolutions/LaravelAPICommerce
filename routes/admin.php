@@ -115,7 +115,11 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     //Packages
     Route::get('package-template', [PackageTemplateController::class, 'packageTemplate'])->name('package-template');
     Route::get('add-package', [PackageTemplateController::class, 'addPackage'])->name('add-package');
-
+    Route::post('addnew-package', [PackageTemplateController::class, 'addnewPackage'])->name('addnew-package');
+    Route::patch('edit-package/{id}', [PackageTemplateController::class, 'editPackage'])->name('edit-package');
+    Route::delete('delete-package/{id}', [PackageTemplateController::class, 'deletePackage'])->name('delete-package');
+    
+    
     
     Route::get('email-template', [EmailTemplateController::class, 'emailTemplate'])->name('email-template');
     Route::get('email-template-config', [EmailTemplateController::class, 'emailTemplateConfig'])->name('email.template.config');

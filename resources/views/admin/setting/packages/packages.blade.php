@@ -21,8 +21,8 @@
 
                             <div class="row">
                                 <div class="col-md-12 bg-white bd-half bd-c-ebedf0 bd-ra-25 p-30">
-                                    <div style="text-align: right; padding-right: 10px; padding-bottom: 10px;">
-                                        <button class="btn btn-primary" type="submit" onclick="configurepackage('1')"><i class="fas fa-plus pr-2"></i>Add Package</button>
+                                    <div style="text-align: right; padding-right: 10px;">
+                                        <button class="btn btn-primary mb-15" type="submit" onclick="configurepackage('0')"><i class="fas fa-plus mr-10"></i>Add Package</button>
                                     <div>
                                     <div class="table-responsive zTable-responsive">
                                         
@@ -56,44 +56,30 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            @foreach(getPackage() as $package)
                                             <tr class="text-center">
-                                                    <td>
-                                                    {{ getOption('customer_limit') }}
-                                                    </td>
-                                                    <td>
-                                                    {{ getOption('customer_limit') }}
-                                                    </td>
-                                                    <td>
-                                                    {{ getPackage('name') }}
+                                                    <td>{{ $package->id }}</td>
+                                                    <td>{{ $package->icon_id }}</td>
+                                                    <td>{{ $package->name }}</td>
+                                                    <td>{{ $package->monthly_price }}</td>
+                                                    <td>{{ $package->yearly_price }}</td>
+                                                    <td>{{ $package->status }}</td>
+                                                    <td>{{ $package->is_trail }}</td>
 
-                                                    </td>
-                                                    <td>
-                                                    {{ getPackage('id', 1, 'product_limit') }}
-                                                    </td>
-                                                    <td>
-                                                    {{ getOption('customer_limit') }}
-                                                    </td>
-                                                    <td>
-                                                    {{ getOption('customer_limit') }}
-                                                    </td>
-                                                    <td>
-                                                    {{ getOption('customer_limit') }}
-                                                    </td>
                                                     <td>
                                                         <div class="action__buttons ">
                                                             <button type="button"
                                                                 class="btn btn-outline-none p-2 "
-                                                                onclick="configureModal('app_mail_status')"
-                                                                title="{{ __('Configure') }}"><i class="fas fa-edit pr-2"></i>   
+                                                                onclick="configurepackage('{{ $package->id }}')"><i class="fas fa-edit pr-2"></i>   
                                                             </button>
                                                             <button type="button"
                                                                 class="btn btn-outline-none p-2 "
-                                                                onclick="configureModal('app_mail_status')"
-                                                                title="{{ __('Configure') }}"><i class="fas fa-trash-alt"></i>
+                                                                onclick="deletePackage('{{ $package->id }}')"><i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                @endforeach  
                                             </tbody>
                                         </table>
                                     </div>
