@@ -15,14 +15,10 @@
                         <input type="hidden" id="addpackage"
                             value="{{ route('admin.setting.add-package') }}">
 
-                        <form class="ajax" action="{{ route('admin.setting.configuration-settings.update') }}"
-                            method="POST" enctype="multipart/form-data" data-handler="settingCommonHandler">
-                            @csrf
-
                             <div class="row">
                                 <div class="col-md-12 bg-white bd-half bd-c-ebedf0 bd-ra-25 p-30">
-                                    <div style="text-align: right; padding-right: 10px;">
-                                        <button class="btn btn-primary mb-15" type="submit" onclick="configurepackage('0')"><i class="fas fa-plus mr-10"></i>Add Package</button>
+                                    <div style="text-align: right; padding-right: 10px; ">
+                                        <button class="btn btn-primary mb-15" type="submit" onclick="configurepackage('0')"><i class="fas fa-plus"></i>Add Package</button>
                                     <div>
                                     <div class="table-responsive zTable-responsive">
                                         
@@ -32,9 +28,7 @@
                                                     <th class="text-center">
                                                         <div>{{ __('SL') }}<div>
                                                     </th>
-                                                    <th class="text-center">
-                                                        <div>{{ __('Icon') }}<div>
-                                                    </th>
+                                                    
                                                     <th class="text-center">
                                                         <div>{{ __('Name') }}<div>
                                                     </th>
@@ -56,10 +50,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach(getPackage() as $package)
+                                            @foreach(getPackage() as $index => $package)
                                             <tr class="text-center">
-                                                    <td>{{ $package->id }}</td>
-                                                    <td>{{ $package->icon_id }}</td>
+                                                    <td>{{ $index + 1 }}</td>
                                                     <td>{{ $package->name }}</td>
                                                     <td>{{ $package->monthly_price }}</td>
                                                     <td>{{ $package->yearly_price }}</td>
@@ -85,7 +78,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Services\SettingsService;
 use Illuminate\Http\Request;
@@ -112,17 +113,22 @@ class PackageTemplateController extends Controller
   }
 
 
-  public function deletePackage($id)
-  {
-      $package = Package::find($id);
-  
-      if (!$package) {
-          return response()->json(['error' => 'Package not found.'], 404);
-      }
-  
-      $package->delete();
-  
-      return $this->success([], getMessage(UPDATED_SUCCESSFULLY)); 
+    public function deletePackage($id)
+    {
+   
+    // Find the package by ID
+    $package = Package::find($id);
+
+    // Check if the package exists
+    if (!$package) {
+        return response()->json(['error' => 'Package not found.'], 404);
     }
+
+    // Permanently delete the package
+    $package->forceDelete();
+
+    // Return a success response
+    return $this->success([], getMessage(UPDATED_SUCCESSFULLY)); 
+}
   
 }

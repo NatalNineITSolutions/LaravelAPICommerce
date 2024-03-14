@@ -57,16 +57,6 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
-                <div class="form-group text-black">
-                    <div class="primary-form-group mt-2">
-                        <div class="primary-form-group-wrap">
-                        <label class="form-label">{{ __('Upload File') }} <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control-file" id="file" name="icon_id">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="primary-form-group my-2">
                     <div class="primary-form-group-wrap">
                     <label class="form-label">{{ __('Monthly Price') }} <span

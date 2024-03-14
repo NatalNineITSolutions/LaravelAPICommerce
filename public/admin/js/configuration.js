@@ -70,7 +70,6 @@
     }
     
     window.configurepackage = function(selector){
-        console.log("Configuring package for:", selector); // Added console log
      $.ajax({
         type: 'GET',
         url: $('#addpackage').val()+'?key='+selector,
@@ -90,6 +89,34 @@
         }
     });
     }
+
+    window.deletePackage = function(packageId) {
+        if (confirm("Are you sure you want to delete this package?")) {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            
+            // Configure the request
+            xhr.open('DELETE', '/admin/setting/delete-package/' + packageId);
+            xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+            
+            // Define the callback function for when the request is complete
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    // Success: Reload the page or update the UI as needed
+                    console.log(xhr.responseText);
+                    location.reload();
+                } else {
+                    // Error: Handle the error response
+                    console.error('Request failed with status:', xhr.status);
+                }
+            };
+    
+            // Send the request
+            xhr.send();
+        }
+    }
+    
+
 
 })(jQuery)
 
