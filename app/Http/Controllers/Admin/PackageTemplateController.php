@@ -27,9 +27,9 @@ class PackageTemplateController extends Controller
 
     public function packageTemplate()
     {
+
         $data['title'] = __("All Packages");
-        $data['showManageApplicationSetting'] = 'active';
-        $data['activeConfigurationSetting'] = 'active-color-one';
+        $data['activePackageSetting'] = 'active';
         return view('admin.setting.packages.packages')->with($data);
     }
 
