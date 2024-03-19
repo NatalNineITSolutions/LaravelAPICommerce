@@ -24,6 +24,8 @@ return new class extends Migration
             $table->text('others')->nullable();
             $table->decimal('monthly_price', 12, 2)->default(0.00);
             $table->decimal('yearly_price', 12, 2)->default(0.00);
+            $table->text('success_link')->nullable();
+            $table->text('cancel_link')->nullable();
             $table->tinyInteger('status')->default(DEACTIVATE)->comment('active for 1 , deactivate for 0');
             $table->tinyInteger('is_default')->default(DEACTIVATE)->comment('active for 1 , deactivate for 0');
             $table->tinyInteger('is_trail')->default(DEACTIVATE)->comment('active for 1 , deactivate for 0');

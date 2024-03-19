@@ -77,6 +77,26 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
+                <div class="primary-form-group my-2">
+                    <div class="primary-form-group-wrap">
+                    <label class="form-label">{{ __('Success Url') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="url" name="success_link" value=""
+                                class="primary-form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
+                <div class="primary-form-group my-2">
+                    <div class="primary-form-group-wrap">
+                    <label class="form-label">{{ __('Cancel Url') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="url" name="cancel_link" value=""
+                                class="primary-form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="form-group text-black">
                     <div class="primary-form-group mt-2">
                         <div class="primary-form-group-wrap">

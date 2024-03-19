@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use App\Traits\ResponseTrait;
+
 use Exception;
 
 class PackageTemplateController extends Controller
@@ -74,6 +75,8 @@ class PackageTemplateController extends Controller
         $package->others = $request->others ?? null;
         $package->monthly_price = $request->monthly_price ?? 0.00;
         $package->yearly_price = $request->yearly_price ?? 0.00;
+        $package->cancel_link = $request->cancel_link;
+        $package->success_link = $request->success_link;
         $package->status = $request->status ?? 0;
         $package->is_default = $request->is_default ?? 0;
         $package->is_trail = $request->is_trail ?? 0;
@@ -92,6 +95,7 @@ class PackageTemplateController extends Controller
     if (!$package) {
         abort(404); // Package not found
     }
+    Log::info('Cancel Link is: ' . $request->input('cancel_link'));
 
     // Update the package fields with the new values from the form
     $package->name = $request->input('name');
@@ -103,6 +107,8 @@ class PackageTemplateController extends Controller
     $package->others = $request->input('others');
     $package->monthly_price = $request->input('monthly_price');
     $package->yearly_price = $request->input('yearly_price');
+    $package->success_link = $request->input('success_link');
+    $package->cancel_link = $request->input('cancel_link');
     $package->status = $request->input('status');
     $package->is_default = $request->input('is_default');
     $package->is_trail = $request->input('is_trail');
