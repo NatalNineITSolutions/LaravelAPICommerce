@@ -12,7 +12,6 @@ use App\Http\Controllers\User\NotificationController;
 use App\Http\Controllers\VersionUpdateController;
 use App\Http\Controllers\Admin\EmailTemplateController;
 use App\Http\Controllers\Admin\PackageTemplateController;
-use App\Http\Controllers\API\MakePaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -128,8 +127,7 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::post('email-template-config-update', [EmailTemplateController::class, 'emailTemplateConfigUpdate'])->name('email.template.config.update');
 });
 
-//payments
-Route::get('Payment-success', [MakePaymentController::class, 'paymentSuccess'])->name('Payment-success');
+
 
 
 

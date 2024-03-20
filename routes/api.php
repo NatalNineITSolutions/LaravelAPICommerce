@@ -25,4 +25,6 @@ Route::post('/forgot-password',[ForgotPasswordController::class,'sendResetLinkEm
 
 //subscription
 Route::post('/make-payment/{id}',[MakePaymentController::class,'makePayment']);
+Route::post('/payment-response/{id}',[MakePaymentController::class,'paymentResponse']);
+
 

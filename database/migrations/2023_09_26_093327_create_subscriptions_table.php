@@ -29,7 +29,7 @@ return new class extends Migration
             $table->decimal('setup_fee',9,2)->default(0.00);
             $table->tinyInteger('billing_cycle')->default(0);
             $table->integer('bill')->default(1);
-            $table->tinyInteger('duration')->default(0);
+            $table->string('duration');
             $table->integer('number_of_recurring_cycle')->default(0);
             $table->decimal('shipping_charge', 12, 2)->default(0);
             $table->tinyInteger('status')->default(0);

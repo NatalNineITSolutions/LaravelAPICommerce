@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Stripe\Stripe;
 use App\Models\Package;
+use App\Models\Subscription;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Gateway;
@@ -20,32 +23,37 @@ class MakePaymentController extends Controller
         // Validate the incoming user name 
         $validator = Validator::make($request->all(), [
             'user_name' => 'required|string',
-            'unit_amount' => 'required|integer|min:1',
+            //'unit_amount' => 'required|integer|min:1',
             'product_name' => 'required|string',
+            'duration' => ['required', 'string', Rule::in(['monthly', 'yearly'])],
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
+        $duration = $request->input('duration');
+
+           if ($duration === 'monthly') {
+               $price = 'monthly_price';
+           } elseif ($duration === 'yearly') {
+               $price = 'yearly_price'; 
+            }
         $user = User::find($id);
-
         // Check if the user exists
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
+        if ($user->name !== $request->input('user_name')) {
+            return response()->json(['message' => 'Invalid user'], 422);
         }
-                // Retrieve data from the request
-                $unitAmount = $request->input('unit_amount') * 100;
-                $productName = $request->input('product_name');
 
-               // $keyValue = Gateway::value('key');
+        $productName = $request->input('product_name');
 
         // Load Stripe library
-        require_once(base_path('vendor/autoload.php'));
+       require_once(base_path('vendor/autoload.php'));
 
        $stripe_secret_key = Gateway::where('title', 'Stripe')->value('key');
        $success_url = Package::where('name', $productName)->value('success_link');
        $cancel_url = Package::where('name', $productName)->value('cancel_link');
+       $unitAmount = Package::where('name', $productName)->value($price)* 100;
 
        Stripe::setApiKey($stripe_secret_key);
 
@@ -71,34 +79,63 @@ class MakePaymentController extends Controller
                 ],
             ]
         ]);
+
+        $this->storeSubscription($id,$productName,$duration);
         return response()->json(['checkout_url' => $checkout_session->url]);
 
         //4000003560000008 indian creditcard number to check stripe payment;
     }
 
-    public function paymentSuccess(Request $request)
+
+    public function storeSubscription($id,$productName,$duration)
     {
-        dd('Payment success method called.');
+        // Fetch user information based on the provided ID
+        $user = User::findOrFail($id);
+        $pack = Package::where('name', $productName)->firstOrFail();
+        $endDate = ($duration === 'monthly') ? Carbon::now()->addDays(30) : Carbon::now()->addDays(365);
 
-            // Fetch the package with id 18
-            $package = Package::find(18);
-        
-            // Check if the package exists
-            if (!$package) {
-                return response()->json(['error' => 'Package not found'], 404);
-            }
-        
-            // Log all data received from the request
-            Log::info('Data received from the request:', $request->all());
-            Log::info('Cancel Link is: ' . $request->input('cancel_link'));
+        // Create a new subscription record
+        $subscription = new subscription();
+        $subscription->user_id = $user->id;
+        $subscription->plan_id = $pack->id;
+        $subscription->duration = $duration;
+        //$subscription->start_date = now(); // Assuming current date and time
+        $subscription->start_date = Carbon::now();
+        $subscription->end_date = $endDate;
+        $subscription->save();
 
-            // Get the cancel URL from the package
-            $cancelUrl = $package->cancel_url;
-        
-            // Return the cancel URL
-            return $cancelUrl;
-        
-        
-    
+        Log::info('storeSubscription function executed');
+
     }
+
+
+public function paymentResponse(Request $request, $id)
+{
+    $latestSubscription = Subscription::where('user_id', $id)
+        ->latest('created_at')
+        ->first();
+
+    if ($latestSubscription) {
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|integer',
+            'subscription_id' => 'required|string|unique:subscriptions,subscription_id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $status = $request->input('status');
+        $subscriptionId = $request->input('subscription_id');
+
+        $latestSubscription->update([
+            'status' => $status,
+            'subscription_id' => $subscriptionId,
+        ]);
+    } else {
+        Log::info('Non-Subscriber with ID: ' . $id . ' reached success page');
+    }
+}
+
+
 }
