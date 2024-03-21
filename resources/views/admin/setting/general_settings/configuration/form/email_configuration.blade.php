@@ -5,6 +5,8 @@
             class="fs-15 fw-500 lh-25 text-black py-10 px-26 bg-7f56d9 text-white bd-ra-12"> <i
                 class="fa fa-envelope"></i> {{ __('Send Test Mail') }}
         </a>
+        <button type="button" class="border-0 btn-close pt-20" data-bs-dismiss="modal" aria-label="Close"></button>
+
     </div>
 
     <form class="ajax" action="{{ route('admin.setting.settings_env.update') }}" method="POST"

@@ -117,7 +117,6 @@ public function paymentResponse(Request $request, $id)
 
     if ($latestSubscription) {
         $validator = Validator::make($request->all(), [
-            'status' => 'required|integer',
             'subscription_id' => 'required|string|unique:subscriptions,subscription_id',
         ]);
 
@@ -125,11 +124,10 @@ public function paymentResponse(Request $request, $id)
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $status = $request->input('status');
         $subscriptionId = $request->input('subscription_id');
 
         $latestSubscription->update([
-            'status' => $status,
+            'status' => '1',
             'subscription_id' => $subscriptionId,
         ]);
     } else {

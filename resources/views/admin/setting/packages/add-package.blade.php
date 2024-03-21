@@ -1,6 +1,8 @@
 <div class="email-inbox__area">
     <div class="item-top mb-30 d-flex flex-wrap justify-content-between">
         <h2>{{ __('Add Package') }}</h2>
+        <button type="button" class="border-0 btn-close pt-20" data-bs-dismiss="modal" aria-label="Close"></button>
+
     </div>
 
     <form class="ajax" action="{{ route('admin.setting.addnew-package') }}" method="POST"
