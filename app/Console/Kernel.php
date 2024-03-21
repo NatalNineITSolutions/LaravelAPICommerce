@@ -15,22 +15,25 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+<<<<<<< HEAD
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command(UpdateSubscriptionStatus::class)->everyMinute();//->dailyAt('08:00');
         //once the application is deployed to its production environment, the cron job on the server will handle scheduling the execution of Laravel's scheduled tasks automatically.
     }
+=======
+
+
+>>>>>>> eb2d7e94040e6e41cf44186e0dd7947a716da34d
 
     /**
      * Register the commands for the application.
      *
      * @return void
      */
-    protected function commands()
-    {
-        $this->load(__DIR__.'/Commands');
 
+<<<<<<< HEAD
         require base_path('routes/console.php');
     }
 
@@ -38,4 +41,6 @@ class Kernel extends ConsoleKernel
         Commands\UpdateSubscriptionStatus::class,
     ];
     
+=======
+>>>>>>> eb2d7e94040e6e41cf44186e0dd7947a716da34d
 }

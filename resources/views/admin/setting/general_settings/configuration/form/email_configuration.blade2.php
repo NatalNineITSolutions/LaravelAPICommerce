@@ -1,41 +1,39 @@
 <div class="email-inbox__area">
     <div class="item-top mb-30 d-flex flex-wrap justify-content-between">
-        <h2>{{ __('Add Package') }}</h2>
+        <h2>{{ __('Mail Configuration') }}</h2>
         <a href="javascript:void(0);" id="sendTestMailBtn"
             class="fs-15 fw-500 lh-25 text-black py-10 px-26 bg-7f56d9 text-white bd-ra-12"> <i
                 class="fa fa-envelope"></i> {{ __('Send Test Mail') }}
         </a>
-        <button type="button" class="border-0 btn-close pt-20" data-bs-dismiss="modal" aria-label="Close"></button>
-
     </div>
 
     <form class="ajax" action="{{ route('admin.setting.settings_env.update') }}" method="POST"
         enctype="multipart/form-data" data-handler="commonResponseForModal">
         @csrf
-        <div class="column">
-            <div class="row-sm-6 row-md-6 row-lg-6 row-xl-4 mb-3">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="form-group text-black">
                     <div class="primary-form-group mt-2">
                         <div class="primary-form-group-wrap">
-                            <label class="form-label">{{ __('Name') }} <span class="text-danger">*</span></label>
+                            <label class="form-label">{{ __('MAIL MAILER') }} <span class="text-danger">*</span></label>
                             <input type="text" name="MAIL_MAILER" value="{{ env('MAIL_MAILER') }}"
                                 class="primary-form-control">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row-sm-6 row-md-6 row-lg-6 row-xl-4 mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="form-group text-black">
                     <div class="primary-form-group mt-2">
                         <div class="primary-form-group-wrap">
-                            <label class="form-label">{{ __('Coustomer Limit') }} <span class="text-danger">*</span></label>
+                            <label class="form-label">{{ __('MAIL HOST') }} <span class="text-danger">*</span></label>
                             <input type="text" name="MAIL_HOST" value="{{ env('MAIL_HOST') }}"
                                 class="primary-form-control">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row-sm-6 row-md-6 row-lg-6 row-xl-4 mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="form-group text-black">
                     <div class="primary-form-group mt-2">
                         <div class="primary-form-group-wrap">
@@ -46,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row-sm-6 row-md-6 row-lg-6 row-xl-4 mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="form-group text-black">
                     <div class="primary-form-group mt-2">
                         <div class="primary-form-group-wrap">
@@ -58,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row-sm-6 row-md-6 row-lg-6 row-xl-4 mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="form-group text-black">
                     <div class="primary-form-group mt-2">
                         <div class="primary-form-group-wrap">
@@ -70,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row-sm-6 row-md-6 row-lg-6 row-xl-4 mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="primary-form-group my-2">
                     <div class="primary-form-group-wrap">
                         <label for="MAIL_ENCRYPTION" class="form-label">{{ __('MAIL ENCRYPTION') }}<span
@@ -86,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row-sm-6 row-md-6 row-lg-6 row-xl-4 mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="form-group text-black">
                     <div class="primary-form-group mt-2">
                         <div class="primary-form-group-wrap">
@@ -98,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row-sm-6 row-md-6 row-lg-6 row-xl-4 mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-3">
                 <div class="form-group text-black">
                     <div class="primary-form-group mt-2">
                         <div class="primary-form-group-wrap">
@@ -119,4 +117,3 @@
         </div>
     </form>
 </div>
-

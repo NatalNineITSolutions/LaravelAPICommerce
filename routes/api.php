@@ -8,6 +8,10 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\API\MakePaymentController;
 
 
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\User\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +32,12 @@ Route::post('/make-payment/{id}',[MakePaymentController::class,'makePayment']);
 Route::post('/payment-response/{id}',[MakePaymentController::class,'paymentResponse']);
 
 
+//call back
+Route::match(array('GET', 'POST'), 'verify', [OrderController::class, 'verify'])->name('payment.verify');
+Route::get('/package', [PackageController::class, 'index']);
+
+
+Route::get('/plans',[PlanController::class,'index']);
+Route::post('/plans',[PlanController::class,'upload']);
+Route::post('/subscriptions',[SubscriptionController::class,'uploadsubscriptions']);
+Route::post('/subscribers',[SubscriptionController::class,'uploadsubscribers']);
