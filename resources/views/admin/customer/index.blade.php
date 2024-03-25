@@ -31,9 +31,6 @@
                                     <div class="min-w-120">{{ __('Created Date') }}</div>
                                 </th>
                                 <th scope="col" class="sorting_disabled" rowspan="1" colspan="1">
-                                    <div class="min-sm-w-100">{{ __('Country') }}</div>
-                                </th>
-                                <th scope="col" class="sorting_disabled" rowspan="1" colspan="1">
                                     <div class="min-sm-w-100">{{ __('Payments') }}</div>
                                 </th>
                                 <th scope="col" class="sorting_disabled" rowspan="1" colspan="1">
@@ -44,10 +41,9 @@
                             <tbody>
                                 @foreach (App\Models\Subscription::with('user')->get() as $subscription)
                                     <tr >
-                                        <td>{{ $subscription->user->name }}</td>
-                                        <td>{{ $subscription->user->email }}</td>
-                                        <td>{{ $subscription->created_at }}</td>
-                                        <td>{{ $subscription->user->country }}</td>
+                                    <td>{{ optional($subscription->user)->name }}</td>
+                                    <td>{{ optional($subscription->user)->email }}</td>
+                                    <td>{{ $subscription->created_at }}</td>
                                         <td>
                                             @if ($subscription->status == 1)
                                                 <div class="status-btn status-btn-green font-13 radius-4">

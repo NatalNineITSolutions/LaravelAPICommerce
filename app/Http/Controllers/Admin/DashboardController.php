@@ -31,8 +31,9 @@ class DashboardController extends Controller
         $data['pageTitle'] = __('Dashboard');
         $data['activeDashboard'] = 'active';
         $data['totalUser'] = User::where(['role' => USER_ROLE_USER, 'status' => STATUS_ACTIVE])->count();
-        $data['totalCustomer'] = User::where(['role' => USER_ROLE_CUSTOMER, 'status' => STATUS_ACTIVE])->count();
-        $data['totalSubscription'] = Subscription::where(['status' => PAYMENT_STATUS_PAID])->count();
+       // $data['totalCustomer'] = User::where(['role' => USER_ROLE_CUSTOMER, 'status' => STATUS_ACTIVE])->count();
+       $data['totalCustomer'] = Subscription::distinct('user_id')->count();
+       $data['totalSubscription'] = Subscription::where(['status' => PAYMENT_STATUS_PAID])->count();
         $data['monthlyRecurringRevenue'] = Invoice::where(['payment_status' => PAYMENT_STATUS_PAID])
             ->whereMonth('created_at', Carbon::now()->month)
             ->sum('amount');

@@ -29,12 +29,6 @@
                                 <th scope="col" class="sorting_disabled" rowspan="1" colspan="1">
                                     <div class="min-w-120">{{ __('Created Date') }}</div>
                                 </th>
-                                <th scope="col" class="sorting_disabled" rowspan="1" colspan="1">
-                                    <div class="min-sm-w-100">{{ __('Country') }}</div>
-                                </th>
-                                <th scope="col" class="sorting_disabled" rowspan="1" colspan="1">
-                                    <div class="min-sm-w-100">{{ __('Revenue') }}</div>
-                                </th>
                             </tr>
                             </thead>
                         </table>
@@ -78,8 +72,8 @@
                             {"data": "name", "name": "name",responsivePriority:1},
                             {"data": "email", "name": "email"},
                             {"data": "created_at", "name": "userDetail.created_at"},
-                            {"data": "country", "name": "userDetail.country"},
-                            {"data": "revenue", "name": "userDetail.revenue"},
+                           // {"data": "country", "name": "userDetail.country"},
+                           // {"data": "revenue", "name": "userDetail.revenue"},
                         ],
                     });
 

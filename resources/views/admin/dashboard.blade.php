@@ -131,7 +131,7 @@
 
             </div>
 
-            <div class="pt-30">
+           <!-- <div class="pt-30">
                 <div class="row rg-30">
                     <div class="col-md-6">
                         <div class="zNews-item-one">
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                   <!-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="zNews-item-one">
                             <div class="content">
                                 <h4 class="title mb-3">{{ __('Product Sold Out') }}</h4>
