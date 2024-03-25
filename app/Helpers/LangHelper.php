@@ -12,12 +12,12 @@ if (!function_exists('__')) {
 
             $key = preg_replace('/\s+/S', " ", $key);
 
-            if (array_key_exists($key, $website)) {
-                if (session()->get('local') == null) {
-                    return $key;
-                }
-                return $website[$key];
-            }
+if (is_array($website) && array_key_exists($key, $website)) {
+    if (session()->get('local') == null) {
+        return $key;
+    }
+    return $website[$key];
+}   
 
             $website[$key] = $key;
             file_put_contents(resource_path("/lang/" . session()->get('local') . ".json"), json_encode($website));

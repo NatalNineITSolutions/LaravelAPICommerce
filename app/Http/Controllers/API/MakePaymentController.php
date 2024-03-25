@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Mail\Websitemail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
@@ -14,6 +15,7 @@ use App\Models\Subscription;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Gateway;
+
 
 
 class MakePaymentController extends Controller
@@ -104,13 +106,18 @@ class MakePaymentController extends Controller
         $subscription->end_date = $endDate;
         $subscription->save();
 
-        Log::info('storeSubscription function executed');
+        Log::info('Store Subscription function executed ');
 
     }
 
 
 public function paymentResponse(Request $request, $id)
 {
+
+   $email = user::where('id', $id)->value('email');
+   Log::info('the email of the user is '.$email);
+
+
     $latestSubscription = Subscription::where('user_id', $id)
         ->latest('created_at')
         ->first();
@@ -130,10 +137,34 @@ public function paymentResponse(Request $request, $id)
             'status' => '1',
             'subscription_id' => $subscriptionId,
         ]);
+        $this->sendmail($email);
+
+       Log::info('subscription id saved for '.$email);
+
+        //return $response->status();
+
+
     } else {
         Log::info('Non-Subscriber with ID: ' . $id . ' reached success page');
     }
+
 }
+
+    public function sendmail($email)
+    {    
+        $subject = 'Subscription Confirmation';
+       $view = view('emails.welcome_email');
+       $message = 'Please click on the following link in order to verify as subscriber:<br><br>';
+        
+
+
+        $message .= $view;
+
+       \Mail::to($email)->send(new Websitemail($subject,$message));
+
+    }
+ 
+
 
 
 }

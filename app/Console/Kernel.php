@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\UpdateSubscriptionStatus;
+use App\Console\Commands\SubscriptionEnding;
 
 
 class Kernel extends ConsoleKernel
@@ -19,6 +20,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command(UpdateSubscriptionStatus::class)->everyMinute();//->dailyAt('08:00');
+        $schedule->command(SubscriptionEnding::class)->everyMinute();
         //once the application is deployed to its production environment, the cron job on the server will handle scheduling the execution of Laravel's scheduled tasks automatically.
     }
 
@@ -36,6 +38,8 @@ class Kernel extends ConsoleKernel
 
     protected $commands = [
         Commands\UpdateSubscriptionStatus::class,
+        Commands\SubscriptionEnding::class,
+
     ];
     
 }

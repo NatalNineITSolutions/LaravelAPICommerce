@@ -1,7 +1,9 @@
 @extends('admin.layouts.app')
+
 @push('title')
     {{ $pageTitle }}
 @endpush
+
 @section('content')
     <!-- Page content area start -->
     <div class="px-24 pb-24 position-relative">
@@ -16,8 +18,7 @@
             <div class="col-md-12 bg-white bd-half bd-c-ebedf0 bd-ra-25 p-30">
                 <div class="customers__table">
                     <div class="table-responsive zTable-responsive">
-                        <table class="able zTable" id="customersTable"
-                               aria-describedby="customersTable_info">
+                        <table class="able zTable" id="customersTable">
                             <thead>
                             <tr>
                                 <th scope="col" class="sorting_disabled" rowspan="1" colspan="1">
@@ -36,10 +37,30 @@
                                     <div class="min-sm-w-100">{{ __('Payments') }}</div>
                                 </th>
                                 <th scope="col" class="sorting_disabled" rowspan="1" colspan="1">
-                                    <div class="min-sm-w-100">{{ __('Revenue') }}</div>
+                                    <div class="min-sm-w-100">{{ __('Duration') }}</div>
                                 </th>
                             </tr>
                             </thead>
+                            <tbody>
+                                @foreach (App\Models\Subscription::with('user')->get() as $subscription)
+                                    <tr >
+                                        <td>{{ $subscription->user->name }}</td>
+                                        <td>{{ $subscription->user->email }}</td>
+                                        <td>{{ $subscription->created_at }}</td>
+                                        <td>{{ $subscription->user->country }}</td>
+                                        <td>
+                                            @if ($subscription->status == 1)
+                                                <div class="status-btn status-btn-green font-13 radius-4">
+                                                    {{ __('Paid') }}</div>
+                                            @else
+                                                <div class="status-btn status-btn-orange font-13 radius-4">
+                                                    {{ __('Pending') }}</div>
+                                            @endif
+                                        </td>
+                                        <td>{{ $subscription->duration }}</td>
+                                    </tr>
+                                @endforeach  
+                            </tbody>         
                         </table>
                     </div>
                 </div>
@@ -47,47 +68,4 @@
         </div>
 
         <!-- Page content area end -->
-        @endsection
-        @push('script')
-            <script>
-                (function ($) {
-                    "use strict";
-
-                    $("#customersTable").DataTable({
-                        pageLength: 10,
-                        ordering: false,
-                        serverSide: true,
-                        processing: true,
-                        searching: false,
-                        responsive: {
-                            breakpoints: [
-                                { name: "desktop", width: Infinity },
-                                { name: "tablet", width: 1400 },
-                                { name: "fablet", width: 768 },
-                                { name: "phone", width: 480 },
-                            ],
-                        },
-                        ajax: '{{route('admin.customer.list')}}',
-                        language: {
-                            paginate: {
-                                previous: "<i class='fa-solid fa-angles-left'></i>",
-                                next: "<i class='fa-solid fa-angles-right'></i>",
-                            },
-                            searchPlaceholder: "Search pending event",
-                            search: "<span class='searchIcon'><i class='fa-solid fa-magnifying-glass'></i></span>",
-                        },
-                        dom: '<>tr<"tableBottom"<"row align-items-center"<"col-sm-6"<"tableInfo"i>><"col-sm-6"<"tablePagi"p>>>><"clear">',
-                        columns: [
-                            {"data": "name", "name": "name",responsivePriority:1},
-                            {"data": "email", "name": "email"},
-                            {"data": "created_at", "name": "userDetail.created_at"},
-                            {"data": "country", "name": "userDetail.country"},
-                            {"data": "payment", "name": "userDetail.payment"},
-                            {"data": "revenue", "name": "userDetail.revenue"},
-                        ],
-                    });
-
-                })(jQuery)
-
-            </script>
-    @endpush
+@endsection

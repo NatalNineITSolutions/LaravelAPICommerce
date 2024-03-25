@@ -11,6 +11,8 @@ use App\Traits\ResponseTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
+
 
 
 class SubscriptionController extends Controller
@@ -142,6 +144,11 @@ class SubscriptionController extends Controller
     {
             $validated = $request->validate([
                 'email' => 'required|email|max:30']);
+                    $email = $request->query('email');
+
+
+                Log::info('ready to send success email');
+
 
         // else
         // {
@@ -157,7 +164,7 @@ class SubscriptionController extends Controller
             $message .= $view;
 
             \Mail::to($request->email)->send(new Websitemail($subject,$message));
-            $data=[
+           $data=[
                 'status'=> 200,
                 'message'=>'Successfully Mail Send'
              ];

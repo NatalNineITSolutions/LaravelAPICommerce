@@ -87,3 +87,4 @@ Route::get('failed', [PaymentController::class, 'failed'])->name('failed');
 
 Route::get('invoice/{id}', [InvoiceController::class, 'invoiceDownload'])->name('invoice');
 Route::get('/event', [EventController::class, 'index'])->name('event.index');
+
