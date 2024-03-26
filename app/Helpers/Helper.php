@@ -707,15 +707,21 @@ if (!function_exists('getErrorMessage')) {
 if (!function_exists('getFileUrl')) {
     function getFileUrl($id = null)
     {
+        Log::info('getFileUrl function called with ID: ' . $id);
 
         $file = FileManager::select('path', 'storage_type')->find($id);
 
         if (!is_null($file)) {
             if (Storage::disk($file->storage_type)->exists($file->path)) {
-
                 if ($file->storage_type == 'public') {
-                    return asset('storage/' . $file->path);
+                    $filePath = 'storage/' . $file->path;
+                    Log::info("Public file path: $filePath");
+                    return asset($filePath);
                 }
+                //if ($file->storage_type == 'public') {
+                 //   return asset('storage/' . $file->path);
+
+               // }
 
                 if ($file->storage_type == 'wasabi') {
                     return Storage::disk('wasabi')->url($file->path);
@@ -725,6 +731,7 @@ if (!function_exists('getFileUrl')) {
                 return Storage::disk($file->storage_type)->url($file->path);
             }
         }
+        Log::warning('File or file path not found for ID: ' . $id);
 
         return asset('assets/images/no-image.jpg');
     }
