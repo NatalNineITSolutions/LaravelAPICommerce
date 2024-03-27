@@ -715,7 +715,6 @@ if (!function_exists('getFileUrl')) {
             if (Storage::disk($file->storage_type)->exists($file->path)) {
                 if ($file->storage_type == 'public') {
                     $filePath = 'storage/' . $file->path;
-                    Log::info("Public file path: $filePath");
                     return asset($filePath);
                 }
                 //if ($file->storage_type == 'public') {
@@ -731,7 +730,6 @@ if (!function_exists('getFileUrl')) {
                 return Storage::disk($file->storage_type)->url($file->path);
             }
         }
-        Log::warning('File or file path not found for ID: ' . $id);
 
         return asset('assets/images/no-image.jpg');
     }
